@@ -11,7 +11,7 @@ export default function Offers() {
   useEffect(() => {
     const fetchOffers = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/offers?activeOnly=true');
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/offers?activeOnly=true`);
         const data = await res.json();
         setOffers(data);
       } catch (error) {

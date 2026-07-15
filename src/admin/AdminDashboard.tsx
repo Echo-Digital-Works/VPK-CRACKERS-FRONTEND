@@ -38,9 +38,9 @@ export default function AdminDashboard() {
     setIsLoading(true);
     try {
       const [productsRes, enquiriesRes, offersRes] = await Promise.all([
-        fetch('http://localhost:5000/api/products', { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('http://localhost:5000/api/enquiry', { headers: { 'Authorization': `Bearer ${token}` } }),
-        fetch('http://localhost:5000/api/offers', { headers: { 'Authorization': `Bearer ${token}` } })
+        fetch(`${import.meta.env.VITE_API_URL}/api/products`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${import.meta.env.VITE_API_URL}/api/enquiry`, { headers: { 'Authorization': `Bearer ${token}` } }),
+        fetch(`${import.meta.env.VITE_API_URL}/api/offers`, { headers: { 'Authorization': `Bearer ${token}` } })
       ]);
       
       const pData = await productsRes.json();
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/products');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
       const data = await res.json();
       setProducts(data.map((p: any) => ({ ...p, id: p._id })));
     } catch (err) {
@@ -91,8 +91,8 @@ export default function AdminDashboard() {
     e.preventDefault();
     if (activeTab === 'offers') {
       const url = isEditing && currentOffer._id 
-        ? `http://localhost:5000/api/offers/${currentOffer._id}`
-        : 'http://localhost:5000/api/offers';
+        ? `${import.meta.env.VITE_API_URL}/api/offers/${currentOffer._id}`
+        : `${import.meta.env.VITE_API_URL}/api/offers`;
         
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -120,8 +120,8 @@ export default function AdminDashboard() {
     }
 
     const url = isEditing && currentProduct.id 
-      ? `http://localhost:5000/api/products/${currentProduct.id}`
-      : 'http://localhost:5000/api/products';
+      ? `${import.meta.env.VITE_API_URL}/api/products/${currentProduct.id}`
+      : `${import.meta.env.VITE_API_URL}/api/products`;
       
     const method = isEditing ? 'PUT' : 'POST';
 
@@ -151,7 +151,7 @@ export default function AdminDashboard() {
     if (activeTab === 'offers') {
       if (window.confirm('Are you sure you want to delete this offer?')) {
         try {
-          const res = await fetch(`http://localhost:5000/api/offers/${id}`, {
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/api/offers/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
           });
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
 
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -186,7 +186,7 @@ export default function AdminDashboard() {
 
   const updateEnquiryStatus = async (id: string, newStatus: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/enquiry/${id}/status`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiry/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

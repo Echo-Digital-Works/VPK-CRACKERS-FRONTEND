@@ -12,7 +12,7 @@ export default function Products() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
         const mappedData = data.map((p: any) => ({ ...p, id: p._id }));

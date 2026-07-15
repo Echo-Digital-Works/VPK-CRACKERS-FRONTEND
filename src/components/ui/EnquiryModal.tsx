@@ -47,7 +47,7 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
     const cartTotal = overrideTotal !== undefined ? overrideTotal : calculatedTotal;
 
     try {
-      const response = await fetch('http://localhost:5000/api/enquiry', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
