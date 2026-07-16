@@ -52,7 +52,7 @@ export default function Products() {
           
           {/* Categories */}
           <motion.div 
-            className="flex flex-wrap justify-center gap-4 mt-12"
+            className="grid grid-cols-5 md:flex md:flex-wrap justify-center items-stretch gap-1.5 md:gap-4 mt-8 md:mt-12 px-1 md:px-0 w-full"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -62,9 +62,9 @@ export default function Products() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-8 py-3 rounded-full text-sm font-bold tracking-wider uppercase transition-all duration-300 ${
+                className={`flex items-center justify-center text-center px-1 py-2 md:px-8 md:py-3 rounded-xl md:rounded-full text-[9px] sm:text-[10px] md:text-sm font-bold tracking-tighter md:tracking-wider uppercase transition-all duration-300 leading-[1.1] md:leading-normal ${
                   activeCategory === cat 
-                    ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark shadow-[0_0_20px_rgba(255,107,0,0.5)] transform scale-105' 
+                    ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark shadow-[0_0_10px_rgba(255,107,0,0.5)] md:shadow-[0_0_20px_rgba(255,107,0,0.5)] transform md:scale-105' 
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/30'
                 }`}
               >
