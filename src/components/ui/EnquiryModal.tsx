@@ -76,7 +76,7 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
         }
         text += `Message: ${enquiryMessage}`;
         const encodedText = encodeURIComponent(text);
-        window.open(`https://wa.me/919003371335?text=${encodedText}`, '_blank');
+        window.open(`https://wa.me/919363036803?text=${encodedText}`, '_blank');
 
         setFormData({ name: '', phone: '', email: '', place: '', message: '' });
         clearCart();
