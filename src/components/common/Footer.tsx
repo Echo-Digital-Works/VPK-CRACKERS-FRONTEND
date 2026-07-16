@@ -17,11 +17,18 @@ export default function Footer() {
               VPK PREM CRACKERS is a 5-year-old shop supplying premium quality fireworks across Tamil Nadu, Karnataka, and Hyderabad.
             </p>
             <div className="flex space-x-4">
-              {[FaFacebook, FaInstagram, FaTwitter, FaYoutube].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
-                  <Icon />
-                </a>
-              ))}
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+                <FaFacebook />
+              </a>
+              <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+                <FaInstagram />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+                <FaTwitter />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+                <FaYoutube />
+              </a>
             </div>
           </div>
 

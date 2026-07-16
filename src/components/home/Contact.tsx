@@ -37,7 +37,7 @@ export default function Contact() {
         text += `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n`;
         text += `Message: ${formData.message}`;
         const encodedText = encodeURIComponent(text);
-        window.open(`https://wa.me/919003371335?text=${encodedText}`, '_blank');
+        window.open(`https://wa.me/919363036803?text=${encodedText}`, '_blank');
 
         setFormData({ name: '', phone: '', email: '', message: '' });
       } else {
@@ -87,10 +87,10 @@ export default function Contact() {
           </motion.p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
           <motion.form 
             onSubmit={handleSubmit}
-            className="glass-card p-8 md:p-12 rounded-3xl border-t border-t-white/20 shadow-2xl relative"
+            className="glass-card p-8 md:p-12 rounded-3xl border-t border-t-white/20 shadow-2xl relative lg:col-span-2"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -187,6 +187,20 @@ export default function Contact() {
               </motion.div>
             )}
           </motion.form>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col items-center justify-center glass-card p-8 rounded-3xl border border-white/10"
+          >
+            <h3 className="text-xl font-bold text-white mb-6 text-center">Follow Us on Instagram</h3>
+            <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" target="_blank" rel="noreferrer" className="w-56 h-56 block rounded-2xl overflow-hidden mb-6 border-2 border-brand-orange p-2 bg-white hover:border-brand-gold transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] hover:shadow-[0_0_20px_rgba(255,215,0,0.4)]">
+              <img src="/qr.jpeg" alt="Instagram QR Code" className="w-full h-full object-contain rounded-xl" />
+            </a>
+            <p className="text-gray-400 text-sm text-center leading-relaxed">Scan or click this QR code to follow us and get the latest offers & festive updates!</p>
+          </motion.div>
         </div>
       </div>
     </section>
