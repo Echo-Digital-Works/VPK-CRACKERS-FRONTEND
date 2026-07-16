@@ -10,23 +10,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="space-y-6">
-            <a href="/" className="inline-block">
-              <img src="/images.png" alt="VPK PREM CRACKERS Logo" className="h-16 w-auto object-contain rounded-md bg-white p-1" />
+            <a href="/" className="inline-block" aria-label="Home">
+              <img src="/images.png" alt="VPK PREM CRACKERS Logo" width="64" height="64" className="h-16 w-auto object-contain rounded-md bg-white p-1" />
             </a>
             <p className="text-gray-400 text-sm leading-relaxed">
               VPK PREM CRACKERS is a 5-year-old shop supplying premium quality fireworks across Tamil Nadu, Karnataka, and Hyderabad.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+              <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
                 <FaFacebook />
               </a>
-              <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+              <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" aria-label="Instagram" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
                 <FaInstagram />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+              <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
                 <FaTwitter />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
+              <a href="#" aria-label="YouTube" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-white/10 transition-all">
                 <FaYoutube />
               </a>
             </div>

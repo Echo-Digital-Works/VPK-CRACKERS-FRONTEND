@@ -43,6 +43,7 @@ export default function Location() {
               style={{ border: 0, borderRadius: '0.75rem', filter: 'invert(90%) hue-rotate(180deg)' }}
               allowFullScreen={true}
               loading="lazy"
+              title="VPK Prem Crackers Location Map"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
 
