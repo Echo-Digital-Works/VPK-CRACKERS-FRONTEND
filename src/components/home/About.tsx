@@ -27,7 +27,7 @@ export default function About() {
   }, []);
 
   const stats = [
-    { label: "Years Experience", value: "20", suffix: "+" },
+    { label: "Years Experience", value: "5", suffix: "+" },
     { label: "Happy Customers", value: "5000", suffix: "+" },
     { label: "Products", value: "300", suffix: "+" },
     { label: "Quality", value: "100", suffix: "%" },
@@ -83,10 +83,10 @@ export default function About() {
                 <h4 className="text-brand-orange tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold">About Our Heritage</h4>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-                Lighting Up Your <span className="text-gradient">Celebrations</span> Since 2004
+                Welcome to <span className="text-gradient">VPK PREM CRACKERS</span>
               </h2>
               <p className="text-gray-400 mb-6 leading-relaxed text-sm md:text-base font-light">
-                We are a licensed, premium crackers provider dedicated to making your festivals vibrant and safe. We believe in delivering only the highest quality fireworks that ensure maximum joy with uncompromised safety standards at affordable prices.
+                This is a 5-year-old cracker shop, actively selling in Tamil Nadu, Karnataka, and Hyderabad. We are a licensed, premium crackers provider dedicated to making your festivals vibrant and safe. We believe in delivering only the highest quality fireworks that ensure maximum joy with uncompromised safety standards at affordable prices.
               </p>
               
               <ul className="space-y-2 mb-8">

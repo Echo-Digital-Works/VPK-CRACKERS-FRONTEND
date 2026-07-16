@@ -37,7 +37,7 @@ export default function Location() {
             {/* Overlay to prevent accidental scrolling on map initially, until clicked or hovered deeply */}
             <div className="absolute inset-0 bg-brand-dark/20 pointer-events-none group-hover:bg-transparent transition-colors z-10" />
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15663.856950346894!2d77.78168235!3d9.45864145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06cee15a96a92b%3A0xc0fb1df92694b7cc!2sSivakasi%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1689000000000!5m2!1sen!2sin" 
+              src="https://maps.google.com/maps?q=9.4039280,77.8784930&hl=en&z=14&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0, borderRadius: '0.75rem', filter: 'invert(90%) hue-rotate(180deg)' }} 
@@ -78,9 +78,8 @@ export default function Location() {
                   <div className="ml-4">
                     <h5 className="text-white font-semibold mb-1">Address</h5>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      123 Fireworks Street, Industrial Estate, Sivakasi, Tamil Nadu 626123
+                      Sattur to Sivakasi main Road<br/>Opp southside International school<br/>Anu and Athira Hotel Backside
                     </p>
-                    <p className="text-brand-orange text-xs mt-1">Landmark: Near Main Factory Outlet</p>
                   </div>
                 </li>
                 
@@ -90,18 +89,10 @@ export default function Location() {
                   </div>
                   <div className="ml-4">
                     <h5 className="text-white font-semibold mb-1">Contact</h5>
-                    <p className="text-gray-400 text-sm">+91 98765 43210</p>
-                    <p className="text-gray-400 text-sm">+91 87654 32109</p>
-                  </div>
-                </li>
-
-                <li className="flex items-start">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-brand-gold shrink-0">
-                    <FaEnvelope />
-                  </div>
-                  <div className="ml-4">
-                    <h5 className="text-white font-semibold mb-1">Email</h5>
-                    <p className="text-gray-400 text-sm">sales@luminarycrackers.com</p>
+                    <p className="text-gray-400 text-sm">+91 90033 71335</p>
+                    <p className="text-gray-400 text-sm">+91 93630 36803</p>
+                    <p className="text-gray-400 text-sm">+91 93631 36803</p>
+                    <p className="text-gray-400 text-sm">+91 90800 37164</p>
                   </div>
                 </li>
 
@@ -110,9 +101,8 @@ export default function Location() {
                     <FaClock />
                   </div>
                   <div className="ml-4">
-                    <h5 className="text-white font-semibold mb-1">Working Hours</h5>
-                    <p className="text-gray-400 text-sm">Mon - Sat: 9:00 AM - 8:00 PM</p>
-                    <p className="text-gray-400 text-sm">Sunday: 10:00 AM - 5:00 PM</p>
+                    <h5 className="text-white font-semibold mb-1">Business Hours</h5>
+                    <p className="text-gray-400 text-sm">24/7 (Open All Days)</p>
                   </div>
                 </li>
               </ul>

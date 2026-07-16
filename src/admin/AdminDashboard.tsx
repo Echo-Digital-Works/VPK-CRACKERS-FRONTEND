@@ -22,6 +22,7 @@ export default function AdminDashboard() {
   const [currentOffer, setCurrentOffer] = useState<any>({
     title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true
   });
+  const [isNewCategory, setIsNewCategory] = useState(false);
   
   const navigate = useNavigate();
   const token = localStorage.getItem('adminToken');
@@ -137,6 +138,7 @@ export default function AdminDashboard() {
 
       if (res.ok) {
         setIsEditing(false);
+        setIsNewCategory(false);
         setCurrentProduct({ name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '' });
         fetchProducts();
       } else {
@@ -583,19 +585,44 @@ export default function AdminDashboard() {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                    <input 
-                      list="category-options"
-                      value={currentProduct.category} 
-                      onChange={e => setCurrentProduct({...currentProduct, category: e.target.value})} 
-                      className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" 
-                      placeholder="Select or type a category"
-                      required 
-                    />
-                    <datalist id="category-options">
-                      {Array.from(new Set([...categories.filter(c => c !== 'All'), ...products.map(p => p.category)])).map(cat => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </datalist>
+                    {isNewCategory ? (
+                      <div className="flex gap-2">
+                        <input 
+                          type="text" 
+                          value={currentProduct.category} 
+                          onChange={e => setCurrentProduct({...currentProduct, category: e.target.value})} 
+                          className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" 
+                          placeholder="Type new category name"
+                          required 
+                        />
+                        <button 
+                          type="button" 
+                          onClick={() => { setIsNewCategory(false); setCurrentProduct({...currentProduct, category: products.length > 0 ? products[0].category : 'Flower Pots'}); }}
+                          className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-medium transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <select
+                        value={currentProduct.category}
+                        onChange={e => {
+                          if (e.target.value === '___NEW___') {
+                            setIsNewCategory(true);
+                            setCurrentProduct({...currentProduct, category: ''});
+                          } else {
+                            setCurrentProduct({...currentProduct, category: e.target.value});
+                          }
+                        }}
+                        className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
+                        required
+                      >
+                        {Array.from(new Set([...categories.filter(c => c !== 'All'), ...products.map(p => p.category)])).map(cat => (
+                          <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                        <option value="___NEW___" className="font-bold text-blue-600">+ Create New Category</option>
+                      </select>
+                    )}
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -615,7 +642,9 @@ export default function AdminDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Product Image</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Product Image <span className="text-gray-400 font-normal ml-1 text-xs">(Recommended 5:4 ratio, e.g., 800x640)</span>
+                    </label>
                     <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors" />
                     {currentProduct.img && (
                       <div className="mt-4">
@@ -856,7 +885,9 @@ export default function AdminDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Offer Image</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Offer Image <span className="text-gray-400 font-normal ml-1 text-xs">(Recommended 5:4 ratio, e.g., 800x640)</span>
+                    </label>
                     <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors" />
                     {currentOffer.image && (
                       <div className="mt-4">

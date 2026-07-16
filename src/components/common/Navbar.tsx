@@ -123,13 +123,23 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white text-2xl focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
-        </button>
+        {/* Mobile Icons (Cart + Menu Toggle) */}
+        <div className="flex items-center space-x-4 md:hidden">
+          <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
+            <HiShoppingCart className="w-6 h-6" />
+            {cartTotalCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">
+                {cartTotalCount}
+              </span>
+            )}
+          </Link>
+          <button
+            className="text-white text-2xl focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -158,21 +168,7 @@ export default function Navbar() {
             >
               Enquiry
             </a>
-            <Link 
-              to="/cart" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center space-x-2 text-white text-lg tracking-widest hover:text-brand-gold mt-4"
-            >
-              <div className="relative">
-                <HiShoppingCart className="w-6 h-6" />
-                {cartTotalCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                    {cartTotalCount}
-                  </span>
-                )}
-              </div>
-              <span>Cart</span>
-            </Link>
+
           </motion.div>
         )}
       </AnimatePresence>

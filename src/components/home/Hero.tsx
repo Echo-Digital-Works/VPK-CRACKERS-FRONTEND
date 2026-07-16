@@ -43,7 +43,9 @@ export default function Hero() {
           loop 
           muted 
           playsInline
-          key={isMobile ? 'mobile' : 'desktop'} // Forces React to reload the video tag when source changes
+          preload="auto"
+          key={isMobile ? 'mobile' : 'desktop'}
+          poster={isMobile ? "https://res.cloudinary.com/dowsywzrx/video/upload/v1784098424/WhatsApp_Video_2026-07-15_at_11.55.17_AM_p12fks.jpg" : "https://res.cloudinary.com/dowsywzrx/video/upload/v1784094044/pattasupalu2_njvvvl.jpg"}
           src={isMobile ? "https://res.cloudinary.com/dowsywzrx/video/upload/v1784098424/WhatsApp_Video_2026-07-15_at_11.55.17_AM_p12fks.mp4" : "https://res.cloudinary.com/dowsywzrx/video/upload/v1784094044/pattasupalu2_njvvvl.mp4"}
           className="w-full h-full object-cover opacity-80 scale-105"
           style={{ animation: 'zoom 20s infinite alternate linear' }}
@@ -61,7 +63,7 @@ export default function Hero() {
 
         <div className="overflow-hidden mb-6">
           <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight text-white drop-shadow-2xl"
+            className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-white drop-shadow-2xl font-heading tracking-wide"
             initial="hidden"
             animate="visible"
             variants={{
