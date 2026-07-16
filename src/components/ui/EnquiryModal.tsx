@@ -64,6 +64,20 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
       if (response.ok) {
         setSubmitStatus('success');
         window.dispatchEvent(new CustomEvent('launchRocket'));
+        
+        let text = `*New ${enquiryType === 'product' ? 'Order' : 'Offer'} Enquiry*\n`;
+        text += `Name: ${formData.name}\nPhone: ${formData.phone}\nPlace: ${formData.place}\n\n`;
+        if (enquiryType === 'product' && formattedCartItems.length > 0) {
+          text += `*Order Details:*\n`;
+          formattedCartItems.forEach(item => {
+            text += `- ${item.name} x${item.quantity} (${item.price})\n`;
+          });
+          text += `\n*Total Estimate: ₹${cartTotal}*\n\n`;
+        }
+        text += `Message: ${enquiryMessage}`;
+        const encodedText = encodeURIComponent(text);
+        window.open(`https://wa.me/919003371335?text=${encodedText}`, '_blank');
+
         setFormData({ name: '', phone: '', email: '', place: '', message: '' });
         clearCart();
         setTimeout(() => {

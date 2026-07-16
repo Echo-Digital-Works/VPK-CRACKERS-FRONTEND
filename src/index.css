@@ -6,7 +6,8 @@
   --color-brand-dark: #050505;
   --color-brand-darker: #020202;
   
-  --font-sans: "Inter", "Outfit", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-heading: "Outfit", sans-serif;
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow: glow 2s ease-in-out infinite alternate;
