@@ -32,6 +32,13 @@ export default function Contact() {
 
       if (response.ok) {
         setSubmitStatus('success');
+        
+        let text = `*New General Enquiry*\n`;
+        text += `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\n`;
+        text += `Message: ${formData.message}`;
+        const encodedText = encodeURIComponent(text);
+        window.open(`https://wa.me/919003371335?text=${encodedText}`, '_blank');
+
         setFormData({ name: '', phone: '', email: '', message: '' });
       } else {
         setSubmitStatus('error');

@@ -11,10 +11,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <a href="/" className="inline-block">
-              <img src="/images.png" alt="Luminary Logo" className="h-16 w-auto object-contain rounded-md bg-white p-1" />
+              <img src="/images.png" alt="VPK PREM CRACKERS Logo" className="h-16 w-auto object-contain rounded-md bg-white p-1" />
             </a>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Experience the magic of celebrations with our premium, licensed, and safe fireworks collection. Elevating your festive moments.
+              VPK PREM CRACKERS is a 5-year-old shop supplying premium quality fireworks across Tamil Nadu, Karnataka, and Hyderabad.
             </p>
             <div className="flex space-x-4">
               {[FaFacebook, FaInstagram, FaTwitter, FaYoutube].map((Icon, idx) => (
@@ -72,7 +72,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm text-center md:text-left mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Luminary Fireworks. All rights reserved.
+            &copy; {new Date().getFullYear()} VPK PREM CRACKERS. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
