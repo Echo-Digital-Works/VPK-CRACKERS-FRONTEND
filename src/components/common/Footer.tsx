@@ -77,10 +77,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm text-center md:text-left mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} VPK PREM CRACKERS. All rights reserved.
-          </p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-center md:text-left">
+            <p className="text-gray-500 text-sm mb-1">
+              &copy; {new Date().getFullYear()} VPK PREM CRACKERS. All rights reserved.
+            </p>
+            <p className="text-gray-600 text-xs">
+              Developed by <a href="https://echodigitalworks.com" target="_blank" rel="noreferrer" className="text-brand-orange hover:text-brand-gold transition-colors font-semibold">Echo Digital Works</a>
+            </p>
+          </div>
           <div className="flex space-x-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
