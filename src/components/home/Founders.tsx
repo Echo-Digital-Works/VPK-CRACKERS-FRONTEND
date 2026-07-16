@@ -35,7 +35,7 @@ export default function Founders() {
             <div className="relative z-10 flex flex-col items-center text-center">
               <div className="w-40 h-40 rounded-full overflow-hidden mb-6 border-4 border-white/10 group-hover:border-brand-gold/50 transition-colors">
                 <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                  src="/founder.jpeg" 
                   alt="Swathi V" 
                   className="w-full h-full object-cover"
                 />
