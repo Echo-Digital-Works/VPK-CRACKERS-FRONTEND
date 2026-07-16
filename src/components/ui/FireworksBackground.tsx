@@ -130,10 +130,12 @@ export default function FireworksBackground() {
     };
 
     const handleClick = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
       createFirework(e.clientX, e.clientY);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
       createSpark(e.clientX, e.clientY);
     };
 
@@ -191,6 +193,7 @@ export default function FireworksBackground() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+
       window.removeEventListener('click', handleClick);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('launchRocket', handleLaunchRocket as EventListener);
