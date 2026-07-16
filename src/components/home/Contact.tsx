@@ -59,14 +59,14 @@ export default function Contact() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <motion.h4 
+          <motion.span 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-brand-gold tracking-widest uppercase text-sm font-bold mb-3"
+            className="block text-brand-gold tracking-widest uppercase text-sm font-bold mb-3"
           >
             Get In Touch
-          </motion.h4>
+          </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -196,8 +196,8 @@ export default function Contact() {
             className="flex flex-col items-center justify-center glass-card p-8 rounded-3xl border border-white/10"
           >
             <h3 className="text-xl font-bold text-white mb-6 text-center">Follow Us on Instagram</h3>
-            <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" target="_blank" rel="noreferrer" className="w-56 h-56 block rounded-2xl overflow-hidden mb-6 border-2 border-brand-orange p-2 bg-white hover:border-brand-gold transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] hover:shadow-[0_0_20px_rgba(255,215,0,0.4)]">
-              <img src="/qr.jpeg" alt="Instagram QR Code" className="w-full h-full object-contain rounded-xl" />
+            <a href="https://www.instagram.com/vpkpremcrackers?utm_source=qr&igsh=MWJza2o0bzNzNmswOQ==" aria-label="Follow us on Instagram" target="_blank" rel="noreferrer" className="w-56 h-56 block rounded-2xl overflow-hidden mb-6 border-2 border-brand-orange p-2 bg-white hover:border-brand-gold transition-colors shadow-[0_0_20px_rgba(255,107,0,0.2)] hover:shadow-[0_0_20px_rgba(255,215,0,0.4)]">
+              <img src="/qr.jpeg" alt="Instagram QR Code" width="200" height="200" loading="lazy" className="w-full h-full object-contain rounded-xl" />
             </a>
             <p className="text-gray-400 text-sm text-center leading-relaxed">Scan or click this QR code to follow us and get the latest offers & festive updates!</p>
           </motion.div>
