@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from 'react-icons/fa';
 
 export default function Location() {
   return (
