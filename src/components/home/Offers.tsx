@@ -13,7 +13,12 @@ export default function Offers() {
       try {
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/offers?activeOnly=true`);
         const data = await res.json();
-        setOffers(data);
+        if (Array.isArray(data)) {
+          setOffers(data);
+        } else {
+          console.error('API response for offers is not an array:', data);
+          setOffers([]);
+        }
       } catch (error) {
         console.error('Failed to fetch offers:', error);
       } finally {
