@@ -709,7 +709,11 @@ export default function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {products.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)).map((product) => (
+                      {products.sort((a, b) => {
+                        const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
+                        const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+                        return orderA - orderB;
+                      }).map((product) => (
                         <tr key={product.id} className="hover:bg-gray-50 transition-colors">
                           <td className="px-6 py-4">
                             <img src={product.img} alt={product.name} className="w-12 h-12 object-cover rounded-md border border-gray-200" />
