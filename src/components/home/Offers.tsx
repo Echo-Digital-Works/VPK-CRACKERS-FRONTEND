@@ -14,7 +14,12 @@ export default function Offers() {
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/offers?activeOnly=true`);
         const data = await res.json();
         if (Array.isArray(data)) {
-          setOffers(data);
+          const sortedOffers = data.sort((a: any, b: any) => {
+            const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
+            const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+            return orderA - orderB;
+          });
+          setOffers(sortedOffers);
         } else {
           console.error('API response for offers is not an array:', data);
           setOffers([]);

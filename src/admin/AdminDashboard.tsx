@@ -20,7 +20,7 @@ export default function AdminDashboard() {
     name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '', sortOrder: 0
   });
   const [currentOffer, setCurrentOffer] = useState<any>({
-    title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true
+    title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true, sortOrder: 0
   });
   const [isNewCategory, setIsNewCategory] = useState(false);
   
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
 
         if (res.ok) {
           setIsEditing(false);
-          setCurrentOffer({ title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true });
+          setCurrentOffer({ title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true, sortOrder: 0 });
           fetchData();
         } else {
           alert('Error saving offer');
@@ -837,9 +837,15 @@ export default function AdminDashboard() {
                     <input type="text" value={currentOffer.title} onChange={e => setCurrentOffer({...currentOffer, title: e.target.value})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
                   </div>
                   
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Discount Tag (e.g. Flat 30% OFF)</label>
-                    <input type="text" value={currentOffer.discount} onChange={e => setCurrentOffer({...currentOffer, discount: e.target.value})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Discount Tag (e.g., 50% OFF)</label>
+                      <input type="text" value={currentOffer.discount} onChange={e => setCurrentOffer({...currentOffer, discount: e.target.value})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Sort Order (e.g., 1, 2)</label>
+                      <input type="number" value={currentOffer.sortOrder ?? 0} onChange={e => setCurrentOffer({...currentOffer, sortOrder: parseInt(e.target.value) || 0})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
+                    </div>
                   </div>
                   
                   <div>
@@ -933,7 +939,7 @@ export default function AdminDashboard() {
                       {isEditing ? 'Update Offer' : 'Add Offer'}
                     </button>
                     {isEditing && (
-                      <button type="button" onClick={() => { setIsEditing(false); setCurrentOffer({ title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true }); }} className="px-5 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                      <button type="button" onClick={() => { setIsEditing(false); setCurrentOffer({ title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true, sortOrder: 0 }); }} className="px-5 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                         Cancel
                       </button>
                     )}
@@ -953,16 +959,25 @@ export default function AdminDashboard() {
                     <thead className="bg-gray-50 text-gray-500 uppercase text-xs font-semibold">
                       <tr>
                         <th className="px-6 py-4">Image</th>
-                        <th className="px-6 py-4">Details</th>
+                        <th className="px-6 py-4">Order</th>
+                        <th className="px-6 py-4">Offer Details</th>
+                        <th className="px-6 py-4">Price / Discount</th>
                         <th className="px-6 py-4 text-center">Status</th>
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {offers.map((offer) => (
+                      {offers.sort((a, b) => {
+                        const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
+                        const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+                        return orderA - orderB;
+                      }).map((offer) => (
                         <tr key={offer._id} className="hover:bg-gray-50 transition-colors">
                           <td className="px-6 py-4">
                             <img src={offer.image} alt={offer.title} className="w-16 h-12 object-cover rounded-md border border-gray-200" />
+                          </td>
+                          <td className="px-6 py-4 font-bold text-gray-500">
+                            #{offer.sortOrder || 0}
                           </td>
                           <td className="px-6 py-4">
                             <div className="font-bold text-gray-900">{offer.title}</div>
