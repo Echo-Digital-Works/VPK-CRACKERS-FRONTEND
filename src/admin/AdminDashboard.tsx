@@ -48,9 +48,25 @@ export default function AdminDashboard() {
       const eData = await enquiriesRes.json();
       const oData = await offersRes.json();
       
-      setProducts(pData.map((p: any) => ({ ...p, id: p._id })));
-      setEnquiries(eData);
-      setOffers(oData);
+      if (Array.isArray(pData)) {
+        setProducts(pData.map((p: any) => ({ ...p, id: p._id })));
+      } else {
+        console.error('API response for products is not an array:', pData);
+      }
+      
+      if (Array.isArray(eData)) {
+        setEnquiries(eData);
+      } else {
+        console.error('API response for enquiries is not an array:', eData);
+        setEnquiries([]);
+      }
+      
+      if (Array.isArray(oData)) {
+        setOffers(oData);
+      } else {
+        console.error('API response for offers is not an array:', oData);
+        setOffers([]);
+      }
     } catch (err) {
       console.error('Error fetching data:', err);
     } finally {
@@ -62,7 +78,11 @@ export default function AdminDashboard() {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
       const data = await res.json();
-      setProducts(data.map((p: any) => ({ ...p, id: p._id })));
+      if (Array.isArray(data)) {
+        setProducts(data.map((p: any) => ({ ...p, id: p._id })));
+      } else {
+        console.error('API response for products is not an array:', data);
+      }
     } catch (err) {
       console.error('Error fetching products:', err);
     }
