@@ -18,8 +18,11 @@ export default function Products() {
         if (Array.isArray(data)) {
           const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
           mappedData.sort((a: any, b: any) => {
-            const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
-            const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+            if (a.category < b.category) return -1;
+            if (a.category > b.category) return 1;
+            
+            const orderA = Number(a.sortOrder) || 999999;
+            const orderB = Number(b.sortOrder) || 999999;
             return orderA - orderB;
           });
           setProducts(mappedData);

@@ -15,8 +15,8 @@ export default function Offers() {
         const data = await res.json();
         if (Array.isArray(data)) {
           const sortedOffers = data.sort((a: any, b: any) => {
-            const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
-            const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+            const orderA = Number(a.sortOrder) || 999999;
+            const orderB = Number(b.sortOrder) || 999999;
             return orderA - orderB;
           });
           setOffers(sortedOffers);

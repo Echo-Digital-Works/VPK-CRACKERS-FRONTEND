@@ -23,6 +23,7 @@ export default function AdminDashboard() {
     title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true, sortOrder: 0
   });
   const [isNewCategory, setIsNewCategory] = useState(false);
+  const [productFilterCategory, setProductFilterCategory] = useState<string>('All');
   
   const navigate = useNavigate();
   const token = localStorage.getItem('adminToken');
@@ -692,9 +693,21 @@ export default function AdminDashboard() {
 
               {/* Products List Section */}
               <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden">
-                <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                  <h3 className="text-xl font-bold text-gray-900">Product List</h3>
-                  <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-medium">{products.length} Items</span>
+                <div className="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50/50 gap-4">
+                  <div className="flex items-center gap-3">
+                    <h3 className="text-xl font-bold text-gray-900">Product List</h3>
+                    <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">{products.length} Items</span>
+                  </div>
+                  <select
+                    value={productFilterCategory}
+                    onChange={(e) => setProductFilterCategory(e.target.value)}
+                    className="bg-white border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 outline-none font-medium shadow-sm"
+                  >
+                    <option value="All">All Categories</option>
+                    {Array.from(new Set(products.map(p => p.category))).map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
                 </div>
                 
                 <div className="overflow-x-auto">
@@ -709,9 +722,12 @@ export default function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {products.sort((a, b) => {
-                        const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
-                        const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+                      {(productFilterCategory === 'All' ? products : products.filter(p => p.category === productFilterCategory)).sort((a, b) => {
+                        if (a.category < b.category) return -1;
+                        if (a.category > b.category) return 1;
+                        
+                        const orderA = Number(a.sortOrder) || 999999;
+                        const orderB = Number(b.sortOrder) || 999999;
                         return orderA - orderB;
                       }).map((product) => (
                         <tr key={product.id} className="hover:bg-gray-50 transition-colors">
@@ -968,8 +984,8 @@ export default function AdminDashboard() {
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {offers.sort((a, b) => {
-                        const orderA = a.sortOrder && a.sortOrder > 0 ? a.sortOrder : 999999;
-                        const orderB = b.sortOrder && b.sortOrder > 0 ? b.sortOrder : 999999;
+                        const orderA = Number(a.sortOrder) || 999999;
+                        const orderB = Number(b.sortOrder) || 999999;
                         return orderA - orderB;
                       }).map((offer) => (
                         <tr key={offer._id} className="hover:bg-gray-50 transition-colors">
