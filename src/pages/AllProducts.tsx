@@ -14,8 +14,12 @@ export default function AllProducts() {
     fetch(`${import.meta.env.VITE_API_URL}/api/products`)
       .then(res => res.json())
       .then(data => {
-        const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
-        setProducts(mappedData);
+        if (Array.isArray(data)) {
+          const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
+          setProducts(mappedData);
+        } else {
+          console.error('API response is not an array:', data);
+        }
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
