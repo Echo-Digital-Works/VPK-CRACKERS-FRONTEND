@@ -17,6 +17,7 @@ export default function Products() {
       .then(data => {
         if (Array.isArray(data)) {
           const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
+          mappedData.sort((a: any, b: any) => (a.sortOrder || 0) - (b.sortOrder || 0));
           setProducts(mappedData);
         } else {
           console.error('API response is not an array:', data);

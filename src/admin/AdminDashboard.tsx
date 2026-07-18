@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedEnquiry, setSelectedEnquiry] = useState<any>(null);
   const [currentProduct, setCurrentProduct] = useState<Partial<Product>>({
-    name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: ''
+    name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '', sortOrder: 0
   });
   const [currentOffer, setCurrentOffer] = useState<any>({
     title: '', discount: '', description: '', image: '', price: '', discountPrice: '', products: [], isActive: true
@@ -159,7 +159,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setIsEditing(false);
         setIsNewCategory(false);
-        setCurrentProduct({ name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '' });
+        setCurrentProduct({ name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '', sortOrder: 0 });
         fetchProducts();
       } else {
         alert('Error saving product');
@@ -645,7 +645,7 @@ export default function AdminDashboard() {
                     )}
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Price (e.g., ₹250)</label>
                       <input type="text" value={currentProduct.price} onChange={e => setCurrentProduct({...currentProduct, price: e.target.value})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
@@ -653,6 +653,10 @@ export default function AdminDashboard() {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Discount (optional)</label>
                       <input type="text" value={currentProduct.discount} onChange={e => setCurrentProduct({...currentProduct, discount: e.target.value})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Sort Order (e.g., 1, 2)</label>
+                      <input type="number" value={currentProduct.sortOrder ?? 0} onChange={e => setCurrentProduct({...currentProduct, sortOrder: parseInt(e.target.value) || 0})} className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none" required />
                     </div>
                   </div>
 
@@ -678,7 +682,7 @@ export default function AdminDashboard() {
                       {isEditing ? 'Update Product' : 'Add Product'}
                     </button>
                     {isEditing && (
-                      <button type="button" onClick={() => { setIsEditing(false); setCurrentProduct({ name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '' }); }} className="px-5 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                      <button type="button" onClick={() => { setIsEditing(false); setCurrentProduct({ name: '', category: 'Flower Pots', price: '', discount: '', img: '', desc: '', sortOrder: 0 }); }} className="px-5 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                         Cancel
                       </button>
                     )}
@@ -698,16 +702,20 @@ export default function AdminDashboard() {
                     <thead className="bg-gray-50 text-gray-500 uppercase text-xs font-semibold">
                       <tr>
                         <th className="px-6 py-4">Image</th>
+                        <th className="px-6 py-4">Order</th>
                         <th className="px-6 py-4">Name & Category</th>
                         <th className="px-6 py-4">Price</th>
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
-                      {products.map((product) => (
+                      {products.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)).map((product) => (
                         <tr key={product.id} className="hover:bg-gray-50 transition-colors">
                           <td className="px-6 py-4">
                             <img src={product.img} alt={product.name} className="w-12 h-12 object-cover rounded-md border border-gray-200" />
+                          </td>
+                          <td className="px-6 py-4 font-bold text-gray-500">
+                            #{product.sortOrder || 0}
                           </td>
                           <td className="px-6 py-4">
                             <div className="font-bold text-gray-900">{product.name}</div>

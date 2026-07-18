@@ -6,6 +6,7 @@ export interface Product {
   discount: string;
   img: string;
   desc: string;
+  sortOrder?: number;
 }
 
 export const categories = ['All', 'Flower Pots', 'Sparklers', 'Ground Chakkars', 'Rockets', 'Bombs', 'Gift Boxes'];
