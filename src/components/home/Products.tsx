@@ -121,7 +121,7 @@ export default function Products() {
                 
                 <div className="p-8 relative z-20">
                   <div className="absolute -top-8 right-8 w-14 h-14 bg-brand-dark rounded-full flex items-center justify-center border-[4px] border-brand-dark group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all duration-500 shadow-xl group-hover:shadow-[0_0_15px_rgba(255,107,0,0.5)] transform group-hover:rotate-90">
-                    <span className="text-white text-2xl group-hover:text-brand-dark">↑</span>
+                    <span className="text-white text-2xl group-hover:text-brand-dark" aria-label="Add to cart">+</span>
                   </div>
                   
                   <div className="text-brand-orange text-xs font-bold tracking-widest uppercase mb-2">{product.category}</div>
