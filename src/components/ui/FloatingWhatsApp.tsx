@@ -7,6 +7,7 @@ export default function FloatingWhatsApp() {
       href="https://wa.me/919363036803?text=I%20need%20an%20enquiry%20about%20the%20crackers"
       target="_blank"
       rel="noreferrer"
+      aria-label="Contact us on WhatsApp"
       className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 flex items-center justify-center hover:bg-green-400 transition-colors"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}

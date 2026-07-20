@@ -97,13 +97,12 @@ export default function Products() {
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.4, type: "spring" }}
                 key={product.id}
-                onClick={() => navigate('/products')}
-                className="glass-card rounded-3xl overflow-hidden group cursor-pointer border border-white/5 hover:border-brand-orange/50 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(255,107,0,0.15)] relative"
+                className="glass-card rounded-3xl overflow-hidden group border border-white/5 hover:border-brand-orange/50 transition-all duration-500 hover:shadow-[0_10px_40px_rgba(255,107,0,0.15)] relative"
               >
                 {/* Decorative corner glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/20 blur-[50px] rounded-full group-hover:bg-brand-orange/40 transition-colors duration-500 pointer-events-none" />
 
-                <div className="relative h-72 overflow-hidden p-2">
+                <Link to="/products" className="relative h-72 overflow-hidden p-2 block">
                   <div className="w-full h-full rounded-2xl overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity z-10" />
                     <img 
@@ -117,7 +116,7 @@ export default function Products() {
                       </div>
                     )}
                   </div>
-                </div>
+                </Link>
                 
                 <div className="p-8 relative z-20">
                   <div className="absolute -top-8 right-8 w-14 h-14 bg-brand-dark rounded-full flex items-center justify-center border-[4px] border-brand-dark group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all duration-500 shadow-xl group-hover:shadow-[0_0_15px_rgba(255,107,0,0.5)] transform group-hover:rotate-90">
@@ -125,7 +124,7 @@ export default function Products() {
                   </div>
                   
                   <div className="text-brand-orange text-xs font-bold tracking-widest uppercase mb-2">{product.category}</div>
-                  <h3 className="text-2xl font-black text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all">{product.name}</h3>
+                  <Link to="/products"><h3 className="text-2xl font-black text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all">{product.name}</h3></Link>
                   <p className="text-gray-400 text-sm mb-6 line-clamp-2 font-light">{product.desc}</p>
                   
                   <div className="flex justify-between items-end border-t border-white/10 pt-6">

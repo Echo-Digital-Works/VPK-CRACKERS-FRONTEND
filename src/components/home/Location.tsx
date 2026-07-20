@@ -38,7 +38,9 @@ export default function Location() {
             transition={{ duration: 0.6 }}
           >
             {!isMapLoaded ? (
-              <div 
+              <button 
+                type="button"
+                aria-label="Load Interactive Map"
                 className="w-full h-full rounded-xl bg-[#1a1a1a] flex flex-col items-center justify-center cursor-pointer hover:bg-[#222] transition-colors border border-white/5 relative overflow-hidden"
                 onClick={() => setIsMapLoaded(true)}
               >
@@ -57,7 +59,7 @@ export default function Location() {
                   <span>Load Interactive Map</span>
                 </div>
                 <p className="text-gray-500 text-sm mt-4 relative z-10">Loads from Google Maps</p>
-              </div>
+              </button>
             ) : (
               <>
                 <div className="absolute inset-0 bg-brand-dark/20 pointer-events-none group-hover:bg-transparent transition-colors z-10" />
