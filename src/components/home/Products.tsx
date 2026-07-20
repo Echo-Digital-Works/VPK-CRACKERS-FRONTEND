@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { type Product } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 import { calculateDiscountedPrice } from '../../utils/priceUtils';
@@ -9,7 +9,6 @@ export default function Products() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [products, setProducts] = useState<Product[]>([]);
   const { addToCart, isInCart } = useCart();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/products`)
