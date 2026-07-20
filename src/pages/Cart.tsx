@@ -99,6 +99,7 @@ export default function Cart() {
                     <div className="flex items-center bg-white/5 rounded-lg border border-white/10">
                       <button 
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        aria-label="Decrease quantity"
                         className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
                         disabled={item.quantity <= 1}
                       >
@@ -107,6 +108,7 @@ export default function Cart() {
                       <span className="w-8 text-center text-white font-bold">{item.quantity}</span>
                       <button 
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        aria-label="Increase quantity"
                         className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
                       >
                         +
@@ -115,6 +117,7 @@ export default function Cart() {
                     
                     <button 
                       onClick={() => removeFromCart(item.id)}
+                      aria-label="Remove item"
                       className="w-10 h-10 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all border border-red-500/20 hover:border-transparent"
                       title="Remove item"
                     >
