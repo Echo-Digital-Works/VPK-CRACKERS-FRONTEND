@@ -118,7 +118,7 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
             <div className="p-8">
               <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
                 <h3 className="text-2xl font-bold text-white">{enquiryType === 'offer' ? 'Offer Enquiry' : 'Product Enquiry'}</h3>
-                <button onClick={onClose} className="text-gray-400 hover:text-brand-orange transition-colors">
+                <button onClick={onClose} aria-label="Close modal" className="text-gray-400 hover:text-brand-orange transition-colors">
                   <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -172,24 +172,24 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="relative group">
-                      <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Name" />
+                      <input type="text" name="name" required aria-label="Name" value={formData.name} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Name" />
                     </div>
                     <div className="relative group">
-                      <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Mobile Number" />
+                      <input type="tel" name="phone" required aria-label="Mobile Number" value={formData.phone} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Mobile Number" />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="relative group">
-                      <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Email ID (Optional)" />
+                      <input type="email" name="email" aria-label="Email ID" value={formData.email} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Email ID (Optional)" />
                     </div>
                     <div className="relative group">
-                      <input type="text" name="place" required value={formData.place} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Place / City" />
+                      <input type="text" name="place" required aria-label="Place or City" value={formData.place} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors" placeholder="Place / City" />
                     </div>
                   </div>
 
                   <div className="relative group">
-                    <textarea name="message" rows={3} value={formData.message} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors resize-none" placeholder="Message or specific requirements (Optional)..." />
+                    <textarea name="message" rows={3} aria-label="Message" value={formData.message} onChange={handleChange} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-orange transition-colors resize-none" placeholder="Message or specific requirements (Optional)..." />
                   </div>
 
                   {submitStatus === 'error' && (

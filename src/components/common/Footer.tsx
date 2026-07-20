@@ -67,6 +67,7 @@ export default function Footer() {
             <form className="flex" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
+                aria-label="Email address for newsletter"
                 placeholder="Your email address"
                 className="bg-white/5 border border-white/10 rounded-l-md px-4 py-2 w-full focus:outline-none focus:border-brand-orange text-sm text-white"
               />
@@ -79,14 +80,14 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-center md:text-left">
-            <p className="text-gray-500 text-sm mb-1">
+            <p className="text-gray-400 text-sm mb-1">
               &copy; {new Date().getFullYear()} VPK PREM CRACKERS. All rights reserved.
             </p>
-            <p className="text-gray-600 text-xs">
+            <p className="text-gray-400 text-xs">
               Developed by <a href="https://echodigitalworks.com" target="_blank" rel="noreferrer" className="text-brand-orange hover:text-brand-gold transition-colors font-semibold">Echo Digital Works</a>
             </p>
           </div>
-          <div className="flex space-x-6 text-sm text-gray-500">
+          <div className="flex space-x-6 text-sm text-gray-400">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>

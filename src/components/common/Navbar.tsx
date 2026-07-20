@@ -71,6 +71,8 @@ export default function Navbar() {
             <img 
               src="/images.png" 
               alt="Luminary Logo" 
+              width="80" 
+              height="80" 
               className="h-16 w-auto object-contain rounded-xl bg-white/10 p-1.5 backdrop-blur-sm border border-white/20" 
             />
           </motion.div>
@@ -113,7 +115,7 @@ export default function Navbar() {
           >
             Enquiry
           </a>
-          <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
+          <Link to="/cart" aria-label="Shopping Cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
             <HiShoppingCart className="w-6 h-6" />
             {cartTotalCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">
@@ -125,7 +127,7 @@ export default function Navbar() {
 
         {/* Mobile Icons (Cart + Menu Toggle) */}
         <div className="flex items-center space-x-4 md:hidden">
-          <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
+          <Link to="/cart" aria-label="Shopping Cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
             <HiShoppingCart className="w-6 h-6" />
             {cartTotalCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">
@@ -134,6 +136,7 @@ export default function Navbar() {
             )}
           </Link>
           <button
+            aria-label="Toggle Mobile Menu"
             className="text-white text-2xl focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
