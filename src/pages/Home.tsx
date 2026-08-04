@@ -17,14 +17,14 @@ export default function Home() {
     <div className="w-full">
       <Hero />
       <Suspense fallback={<div className="h-32 w-full flex items-center justify-center"></div>}>
-        <LazyShow rootMargin="400px"><Offers /></LazyShow>
-        <LazyShow rootMargin="400px"><About /></LazyShow>
-        <LazyShow rootMargin="400px"><Founders /></LazyShow>
-        <LazyShow rootMargin="400px"><Products /></LazyShow>
-        <LazyShow rootMargin="400px"><Videos /></LazyShow>
-        <LazyShow rootMargin="400px"><Testimonials /></LazyShow>
-        <LazyShow rootMargin="400px"><Location /></LazyShow>
-        <LazyShow rootMargin="400px"><Contact /></LazyShow>
+        <LazyShow id="offers" rootMargin="400px"><Offers /></LazyShow>
+        <LazyShow id="about" rootMargin="400px"><About /></LazyShow>
+        <LazyShow id="founders" rootMargin="400px"><Founders /></LazyShow>
+        <LazyShow id="products" rootMargin="400px"><Products /></LazyShow>
+        <LazyShow id="videos" rootMargin="400px"><Videos /></LazyShow>
+        <LazyShow id="testimonials" rootMargin="400px"><Testimonials /></LazyShow>
+        <LazyShow id="location" rootMargin="400px"><Location /></LazyShow>
+        <LazyShow id="contact" rootMargin="400px"><Contact /></LazyShow>
       </Suspense>
     </div>
   );
