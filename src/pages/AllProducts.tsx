@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { type Product } from '../data/products';
+import { products as localProducts, type Product } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { calculateDiscountedPrice } from '../utils/priceUtils';
 
 export default function AllProducts() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<Product[]>(localProducts);
+  const [loading, setLoading] = useState(false);
   const { addToCart, isInCart } = useCart();
 
   useEffect(() => {
