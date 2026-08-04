@@ -100,7 +100,12 @@ export default function FireworksBackground() {
     const colors = ['#FFD700', '#FF6B00', '#FFFFFF', '#FF3366', '#33CCFF'];
 
     const createFirework = (x: number, y: number, big = false) => {
-      const particleCount = big ? Math.floor(Math.random() * 50) + 50 : Math.floor(Math.random() * 30) + 20;
+      const isMobile = window.innerWidth < 768;
+      // Reduce particle count on mobile by 60% to prevent lag
+      const particleCount = big 
+        ? Math.floor(Math.random() * (isMobile ? 20 : 50)) + (isMobile ? 20 : 50) 
+        : Math.floor(Math.random() * (isMobile ? 12 : 30)) + (isMobile ? 8 : 20);
+        
       const color = colors[Math.floor(Math.random() * colors.length)];
       for (let i = 0; i < particleCount; i++) {
         if (particles.length < maxParticles) {
@@ -130,7 +135,6 @@ export default function FireworksBackground() {
     };
 
     const handleClick = (e: MouseEvent) => {
-      if (window.innerWidth < 768) return;
       createFirework(e.clientX, e.clientY);
     };
 

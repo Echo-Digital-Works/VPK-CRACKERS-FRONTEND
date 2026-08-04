@@ -4,9 +4,10 @@ interface LazyShowProps {
   children: ReactNode;
   fallback?: ReactNode;
   rootMargin?: string;
+  id?: string;
 }
 
-export default function LazyShow({ children, fallback = <div className="h-32 w-full" />, rootMargin = '200px' }: LazyShowProps) {
+export default function LazyShow({ children, fallback = <div className="h-32 w-full" />, rootMargin = '200px', id }: LazyShowProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,5 +37,5 @@ export default function LazyShow({ children, fallback = <div className="h-32 w-f
     };
   }, [isVisible, rootMargin]);
 
-  return <div ref={ref}>{isVisible ? children : fallback}</div>;
+  return <div id={id} ref={ref}>{isVisible ? children : fallback}</div>;
 }

@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  
+  const springConfig = { damping: 25, stiffness: 700 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Check if the screen is small (mobile)
     if (window.innerWidth < 768) {
       setIsMobile(true);
       return;
     }
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     };
 
     window.addEventListener('mousemove', updateMousePosition);
@@ -20,7 +26,7 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   if (isMobile) return null;
 
@@ -28,19 +34,21 @@ export default function CustomCursor() {
     <>
       <motion.div
         className="fixed top-0 left-0 w-4 h-4 bg-brand-gold rounded-full pointer-events-none z-[9999] mix-blend-screen"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%'
         }}
-        transition={{ type: 'tween', ease: 'backOut', duration: 0.1 }}
       />
       <motion.div
         className="fixed top-0 left-0 w-12 h-12 border border-brand-orange/50 rounded-full pointer-events-none z-[9998]"
-        animate={{
-          x: mousePosition.x - 24,
-          y: mousePosition.y - 24,
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+          translateX: '-50%',
+          translateY: '-50%'
         }}
-        transition={{ type: 'tween', ease: 'easeOut', duration: 0.3 }}
       />
     </>
   );

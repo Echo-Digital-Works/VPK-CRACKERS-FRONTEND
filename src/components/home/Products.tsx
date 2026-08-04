@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { type Product } from '../../data/products';
+import { products as localProducts, type Product } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 import { calculateDiscountedPrice } from '../../utils/priceUtils';
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(localProducts);
   const { addToCart, isInCart } = useCart();
 
   useEffect(() => {
