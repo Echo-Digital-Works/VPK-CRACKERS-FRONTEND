@@ -60,8 +60,10 @@ export default function FireworksBackground() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
+        if (window.innerWidth >= 768) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = this.color;
+        }
         ctx.fill();
         ctx.restore();
       }
