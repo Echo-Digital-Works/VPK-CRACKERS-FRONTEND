@@ -123,9 +123,11 @@ export default function Offers() {
                   {offer.price && (
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="flex flex-col">
-                        <span className="text-gray-400 text-sm line-through">M.R.P: {offer.price}</span>
+                        <span className="text-gray-400 text-sm line-through">
+                          M.R.P: <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{offer.price.toString().replace(/[^\d]/g, '')}
+                        </span>
                         <span className="text-2xl font-bold text-white">
-                          {offer.discountPrice}
+                          <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-1">₹</span>{offer.discountPrice?.toString().replace(/[^\d]/g, '')}
                         </span>
                       </div>
                       <div className="bg-brand-orange/20 text-brand-orange px-2 py-1 rounded text-xs font-bold border border-brand-orange/30">

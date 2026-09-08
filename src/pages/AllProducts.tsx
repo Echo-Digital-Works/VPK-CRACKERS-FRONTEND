@@ -165,12 +165,16 @@ export default function AllProducts() {
                           {product.discount ? (
                             <div className="flex items-baseline gap-2">
                               <span className="text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all">
-                                ₹{calculateDiscountedPrice(product.price, product.discount)}
+                                <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-1">₹</span>{calculateDiscountedPrice(product.price, product.discount)}
                               </span>
-                              <span className="text-sm text-gray-500 line-through">{product.price}</span>
+                              <span className="text-sm text-gray-500 line-through">
+                                <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{product.price.replace(/[^\d]/g, '')}
+                              </span>
                             </div>
                           ) : (
-                            <span className="text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all">{product.price}</span>
+                            <span className="text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-gold group-hover:to-brand-orange transition-all">
+                              <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-1">₹</span>{product.price.replace(/[^\d]/g, '')}
+                            </span>
                           )}
                         </div>
                         <button 

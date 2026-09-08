@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaEnvelope } from 'react-icons/fa';
 
 export default function Location() {
-  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   return (
     <section id="location" className="py-24 bg-brand-darker relative overflow-hidden">
@@ -37,44 +35,17 @@ export default function Location() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {!isMapLoaded ? (
-              <button 
-                type="button"
-                aria-label="Load Interactive Map"
-                className="w-full h-full rounded-xl bg-[#1a1a1a] flex flex-col items-center justify-center cursor-pointer hover:bg-[#222] transition-colors border border-white/5 relative overflow-hidden"
-                onClick={() => setIsMapLoaded(true)}
-              >
-                {/* Decorative map grid background */}
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-                
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  className="text-brand-orange text-6xl drop-shadow-[0_0_15px_rgba(255,107,0,0.8)] mb-6 relative z-10"
-                >
-                  <FaMapMarkerAlt />
-                </motion.div>
-                
-                <div className="relative z-10 bg-brand-gold text-brand-dark font-bold px-6 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,215,0,0.4)]">
-                  <span>Load Interactive Map</span>
-                </div>
-                <p className="text-gray-500 text-sm mt-4 relative z-10">Loads from Google Maps</p>
-              </button>
-            ) : (
-              <>
-                <div className="absolute inset-0 bg-brand-dark/20 pointer-events-none group-hover:bg-transparent transition-colors z-10" />
-                <iframe
-                  src="https://maps.google.com/maps?q=9.4039280,77.8784930&hl=en&z=14&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, borderRadius: '0.75rem', filter: 'invert(90%) hue-rotate(180deg)' }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  title="VPK Prem Crackers Location Map"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </>
-            )}
+            <div className="absolute inset-0 bg-brand-dark/20 pointer-events-none group-hover:bg-transparent transition-colors z-10" />
+            <iframe
+              src="https://maps.google.com/maps?q=9.4039280,77.8784930&hl=en&z=14&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, borderRadius: '0.75rem', filter: 'invert(90%) hue-rotate(180deg)' }}
+              allowFullScreen={true}
+              loading="lazy"
+              title="VPK Prem Crackers Location Map"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </motion.div>
 
           {/* Details Card */}
