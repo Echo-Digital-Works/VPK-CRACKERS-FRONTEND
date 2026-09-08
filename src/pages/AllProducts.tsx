@@ -1,37 +1,81 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { products as localProducts, type Product } from '../data/products';
+import { type Product } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { calculateDiscountedPrice } from '../utils/priceUtils';
 
 export default function AllProducts() {
-  const [products, setProducts] = useState<Product[]>(localProducts);
-  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
   const { addToCart, isInCart } = useCart();
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  
+  const lastElementRef = useCallback((node: HTMLDivElement | null) => {
+    if (loading || loadingMore) return;
+    if (observer.current) observer.current.disconnect();
+    
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prev => prev + 1);
+      }
+    });
+    
+    if (node) observer.current.observe(node);
+  }, [loading, loadingMore, hasMore]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
-          mappedData.sort((a: any, b: any) => {
-            if (a.category < b.category) return -1;
-            if (a.category > b.category) return 1;
-            
-            const orderA = Number(a.sortOrder) || 999999;
-            const orderB = Number(b.sortOrder) || 999999;
-            return orderA - orderB;
-          });
-          setProducts(mappedData);
-        } else {
-          console.error('API response is not an array:', data);
-        }
-      })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchProducts = async () => {
+      if (page === 1) setLoading(true);
+      else setLoadingMore(true);
+
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products?page=${page}&limit=10`);
+        const data = await res.json();
+        
+        if (isMounted) {
+          if (Array.isArray(data)) {
+            const mappedData = data.map((p: any) => ({ ...p, id: p._id }));
+            
+            if (page === 1) {
+              setProducts(mappedData);
+            } else {
+              setProducts(prev => {
+                const existingIds = new Set(prev.map(p => p.id));
+                const newProducts = mappedData.filter((p: any) => !existingIds.has(p.id));
+                return [...prev, ...newProducts];
+              });
+            }
+            
+            setHasMore(data.length === 10);
+          } else {
+            console.error('API response is not an array:', data);
+            setHasMore(false);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        if (isMounted) setHasMore(false);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+          setLoadingMore(false);
+        }
+      }
+    };
+
+    fetchProducts();
+    
+    return () => { isMounted = false; };
+  }, [page]);
 
   const sections = Array.from(new Set([
     ...products.map(p => p.category)
@@ -162,6 +206,9 @@ export default function AllProducts() {
             </div>
           );
         })}
+        
+        {loadingMore && <div className="text-center text-white py-8 font-bold">Loading more products...</div>}
+        <div ref={lastElementRef} style={{ height: '20px' }} />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Hero from '../components/home/Hero';
 import Offers from '../components/home/Offers';
 import About from '../components/home/About';
@@ -9,6 +10,10 @@ import Location from '../components/home/Location';
 import Contact from '../components/home/Contact';
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-full">
       <Hero />
