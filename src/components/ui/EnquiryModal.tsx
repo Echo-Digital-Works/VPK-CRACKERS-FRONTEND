@@ -134,24 +134,24 @@ export default function EnquiryModal({ isOpen, onClose, cartItems, enquiryType =
                     {cartItems.map(item => (
                       <div key={item.id} className="flex justify-between border-b border-white/5 pb-1 last:border-0 last:pb-0">
                         <span className="pr-4">{item.name} <span className="text-gray-500">x {item.quantity}</span></span>
-                        <span className="text-brand-gold whitespace-nowrap">₹{calculateDiscountedPrice(item.price, item.discount)}</span>
+                        <span className="text-brand-gold whitespace-nowrap"><span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{calculateDiscountedPrice(item.price, item.discount)}</span>
                       </div>
                     ))}
                     {overrideTotal !== undefined ? (
                       <div className="mt-2 pt-2 border-t border-white/10 space-y-1">
                         <div className="flex justify-between text-gray-400">
                           <span>Original Total</span>
-                          <span className="line-through">₹{cartItems.reduce((acc, curr) => acc + (parseInt(curr.price.replace(/[^\d]/g, ''), 10) || 0) * curr.quantity, 0)}</span>
+                          <span className="line-through"><span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{cartItems.reduce((acc, curr) => acc + (parseInt(curr.price.replace(/[^\d]/g, ''), 10) || 0) * curr.quantity, 0)}</span>
                         </div>
                         <div className="flex justify-between font-bold text-white text-lg">
                           <span>Offer Price</span>
-                          <span className="text-brand-gold">₹{overrideTotal}</span>
+                          <span className="text-brand-gold"><span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{overrideTotal}</span>
                         </div>
                       </div>
                     ) : (
                       <div className="flex justify-between font-bold text-white mt-2 pt-2 border-t border-white/10">
                         <span>Total</span>
-                        <span className="text-brand-gold">₹{cartItems.reduce((acc, curr) => acc + calculateDiscountedPrice(curr.price, curr.discount) * curr.quantity, 0)}</span>
+                        <span className="text-brand-gold"><span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{cartItems.reduce((acc, curr) => acc + calculateDiscountedPrice(curr.price, curr.discount) * curr.quantity, 0)}</span>
                       </div>
                     )}
                   </div>

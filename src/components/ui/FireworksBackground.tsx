@@ -137,6 +137,7 @@ export default function FireworksBackground() {
     };
 
     const handleClick = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
       createFirework(e.clientX, e.clientY);
     };
 
