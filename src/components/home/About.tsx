@@ -50,9 +50,9 @@ export default function About() {
               transition={{ duration: 0.8 }}
             >
               <img 
-                src="https://images.unsplash.com/photo-1535295972055-1c762f4483e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Fireworks Celebration" 
-                className="w-full aspect-square lg:aspect-[4/3] rounded-xl object-cover hover:scale-105 transition-transform duration-700"
+                src="/images.png" 
+                alt="VPK PREM CRACKERS Logo" 
+                className="w-full aspect-square lg:aspect-[4/3] rounded-xl object-contain hover:scale-105 transition-transform duration-700 p-4 bg-white/5"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-transparent pointer-events-none" />
             </motion.div>

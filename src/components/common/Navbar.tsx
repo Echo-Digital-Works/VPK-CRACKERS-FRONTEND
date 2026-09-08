@@ -115,10 +115,10 @@ export default function Navbar() {
           >
             Enquiry
           </a>
-          <Link to="/cart" aria-label="Shopping Cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
-            <HiShoppingCart className="w-6 h-6" />
+          <Link to="/cart" aria-label="Shopping Cart" className="relative p-1 transition-transform hover:scale-110">
+            <img src="/cart.png" alt="Cart" className="w-8 h-8 object-contain" />
             {cartTotalCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">
+              <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg border-2 border-brand-dark">
                 {cartTotalCount}
               </span>
             )}
@@ -127,10 +127,10 @@ export default function Navbar() {
 
         {/* Mobile Icons (Cart + Menu Toggle) */}
         <div className="flex items-center space-x-4 md:hidden">
-          <Link to="/cart" aria-label="Shopping Cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
-            <HiShoppingCart className="w-6 h-6" />
+          <Link to="/cart" aria-label="Shopping Cart" className="relative p-1 transition-transform hover:scale-110">
+            <img src="/cart.png" alt="Cart" className="w-8 h-8 object-contain" />
             {cartTotalCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg">
+              <span className="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-lg border-2 border-brand-dark">
                 {cartTotalCount}
               </span>
             )}

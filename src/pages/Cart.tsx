@@ -86,11 +86,17 @@ export default function Cart() {
                     <div className="flex items-center justify-center sm:justify-start gap-3">
                       {item.discount ? (
                         <>
-                          <p className="text-brand-gold font-bold text-xl">₹{calculateDiscountedPrice(item.price, item.discount)}</p>
-                          <p className="text-gray-500 line-through text-sm">{item.price}</p>
+                          <p className="text-brand-gold font-bold text-xl">
+                            <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{calculateDiscountedPrice(item.price, item.discount)}
+                          </p>
+                          <p className="text-gray-500 line-through text-sm">
+                            <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{item.price.replace(/[^\d]/g, '')}
+                          </p>
                         </>
                       ) : (
-                        <p className="text-brand-gold font-bold text-xl">{item.price}</p>
+                        <p className="text-brand-gold font-bold text-xl">
+                          <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{item.price.replace(/[^\d]/g, '')}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -146,7 +152,9 @@ export default function Cart() {
                   </div>
                   <div className="flex justify-between items-center text-gray-400">
                     <span>Estimated Total</span>
-                    <span className="text-brand-gold font-bold text-xl">₹{cartTotalValue}</span>
+                    <span className="text-brand-gold font-bold text-xl">
+                      <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{cartTotalValue}
+                    </span>
                   </div>
                   <p className="text-xs text-gray-500 mt-2 italic">
                     * The actual total may vary based on bulk discounts and current stock. Submit the enquiry to get a final quote.
