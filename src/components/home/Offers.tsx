@@ -39,7 +39,11 @@ export default function Offers() {
   };
 
   if (isLoading) {
-    return null; // or a loading skeleton
+    return (
+      <section className="py-16 bg-black relative overflow-hidden min-h-[50vh] flex items-center justify-center">
+        <div className="text-brand-orange animate-pulse font-bold tracking-widest uppercase">Loading Offers...</div>
+      </section>
+    );
   }
 
   if (offers.length === 0) {
