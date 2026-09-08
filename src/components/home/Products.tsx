@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { products as localProducts, type Product } from '../../data/products';
+import { type Product } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 import { calculateDiscountedPrice } from '../../utils/priceUtils';
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [products, setProducts] = useState<Product[]>(localProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { addToCart, isInCart } = useCart();
 
   useEffect(() => {
@@ -29,7 +30,8 @@ export default function Products() {
           console.error('API response is not an array:', data);
         }
       })
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const filteredProducts = activeCategory === 'All' 
@@ -63,32 +65,55 @@ export default function Products() {
           
           {/* Categories */}
           <motion.div 
-            className="grid grid-cols-5 md:flex md:flex-wrap justify-center items-stretch gap-1.5 md:gap-4 mt-8 md:mt-12 px-1 md:px-0 w-full"
+            className="flex flex-wrap justify-center items-stretch gap-2 md:gap-4 mt-8 md:mt-12 px-2 md:px-0 w-full"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {Array.from(new Set(['All', ...products.map(p => p.category)])).map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`flex items-center justify-center text-center px-1 py-2 md:px-8 md:py-3 rounded-xl md:rounded-full text-[9px] sm:text-[10px] md:text-sm font-bold tracking-tighter md:tracking-wider uppercase transition-all duration-300 leading-[1.1] md:leading-normal ${
-                  activeCategory === cat 
-                    ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark shadow-[0_0_10px_rgba(255,107,0,0.5)] md:shadow-[0_0_20px_rgba(255,107,0,0.5)] transform md:scale-105' 
-                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/30'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {isLoading ? (
+              [...Array(5)].map((_, idx) => (
+                <div key={`cat-skeleton-${idx}`} className="h-8 md:h-12 w-20 md:w-32 bg-white/10 rounded-xl md:rounded-full animate-pulse border border-white/5" />
+              ))
+            ) : (
+              Array.from(new Set(['All', ...products.map(p => p.category)])).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`flex items-center justify-center text-center px-3 py-2 md:px-8 md:py-3 rounded-xl md:rounded-full text-[10px] md:text-sm font-bold tracking-tighter md:tracking-wider uppercase transition-all duration-300 leading-tight md:leading-normal ${
+                    activeCategory === cat 
+                      ? 'bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark shadow-[0_0_10px_rgba(255,107,0,0.5)] md:shadow-[0_0_20px_rgba(255,107,0,0.5)] transform md:scale-105' 
+                      : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/30'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))
+            )}
           </motion.div>
         </div>
 
         {/* Product Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <AnimatePresence>
-            {filteredProducts.slice(0, 6).map((product) => (
+            {isLoading ? (
+              [...Array(6)].map((_, idx) => (
+                <div key={`skeleton-${idx}`} className="glass-card rounded-3xl overflow-hidden animate-pulse border border-white/5">
+                  <div className="h-72 bg-white/5" />
+                  <div className="p-8">
+                    <div className="h-3 bg-white/10 rounded w-1/4 mb-4" />
+                    <div className="h-6 bg-white/10 rounded w-3/4 mb-3" />
+                    <div className="h-3 bg-white/5 rounded w-full mb-2" />
+                    <div className="h-3 bg-white/5 rounded w-2/3 mb-6" />
+                    <div className="flex justify-between border-t border-white/10 pt-6">
+                      <div className="h-8 bg-white/10 rounded w-1/3" />
+                      <div className="h-6 bg-white/10 rounded w-1/4" />
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              filteredProducts.slice(0, 6).map((product) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -168,7 +193,7 @@ export default function Products() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            )))}
           </AnimatePresence>
         </motion.div>
         
