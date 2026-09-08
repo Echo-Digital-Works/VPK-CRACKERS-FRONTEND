@@ -131,11 +131,17 @@ export default function Products() {
                       <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">Price</div>
                       {product.discount ? (
                         <div className="flex items-baseline gap-2">
-                          <span className="text-3xl font-black text-white">₹{calculateDiscountedPrice(product.price, product.discount)}</span>
-                          <span className="text-sm text-gray-500 line-through">{product.price}</span>
+                          <span className="text-3xl font-black text-white">
+                            <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-1">₹</span>{calculateDiscountedPrice(product.price, product.discount)}
+                          </span>
+                          <span className="text-sm text-gray-500 line-through">
+                            <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-0.5">₹</span>{product.price.replace(/[^\d]/g, '')}
+                          </span>
                         </div>
                       ) : (
-                        <span className="text-3xl font-black text-white">{product.price}</span>
+                        <span className="text-3xl font-black text-white">
+                          <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: 500 }} className="mr-1">₹</span>{product.price.replace(/[^\d]/g, '')}
+                        </span>
                       )}
                     </div>
                     <button 
