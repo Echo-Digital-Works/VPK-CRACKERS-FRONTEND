@@ -82,7 +82,32 @@ export default function AllProducts() {
   ]));
 
   if (loading) {
-    return <div className="min-h-screen pt-32 pb-20 text-center text-white">Loading products...</div>;
+    return (
+      <div className="pt-32 pb-24 bg-brand-dark min-h-screen relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-20 animate-pulse">
+            <div className="h-12 bg-white/10 rounded w-64 mx-auto mb-6" />
+            <div className="h-4 bg-white/10 rounded w-96 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, idx) => (
+              <div key={`all-skeleton-${idx}`} className="glass-card rounded-2xl overflow-hidden animate-pulse border border-white/5 h-[450px]">
+                <div className="h-72 w-full bg-white/5" />
+                <div className="p-8">
+                  <div className="h-6 bg-white/10 rounded w-3/4 mb-4" />
+                  <div className="h-4 bg-white/5 rounded w-full mb-2" />
+                  <div className="h-4 bg-white/5 rounded w-2/3 mb-6" />
+                  <div className="flex justify-between border-t border-white/10 pt-6">
+                    <div className="h-8 bg-white/10 rounded w-1/3" />
+                    <div className="h-6 bg-white/10 rounded w-1/4" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
