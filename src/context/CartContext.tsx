@@ -10,6 +10,7 @@ interface CartContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
+  setItemQuantity: (product: Product, quantity: number) => void;
   clearCart: () => void;
   isInCart: (productId: number) => boolean;
   cartTotalCount: number;
@@ -41,6 +42,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     ));
   };
 
+  const setItemQuantity = (product: Product, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(product.id);
+      return;
+    }
+    setCartItems(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.map(item => item.id === product.id ? { ...item, quantity } : item);
+      }
+      return [...prev, { ...product, quantity }];
+    });
+  };
+
   const clearCart = () => setCartItems([]);
 
   const isInCart = (productId: number) => cartItems.some(item => item.id === productId);
@@ -53,6 +68,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       addToCart,
       removeFromCart,
       updateQuantity,
+      setItemQuantity,
       clearCart,
       isInCart,
       cartTotalCount

@@ -8,6 +8,7 @@ import { CartProvider } from './context/CartContext';
 // Lazy load pages to reduce initial JavaScript payload (Code Splitting)
 const Home = lazy(() => import('./pages/Home'));
 const AllProducts = lazy(() => import('./pages/AllProducts'));
+const BuyProducts = lazy(() => import('./pages/BuyProducts'));
 const Cart = lazy(() => import('./pages/Cart'));
 const AdminLogin = lazy(() => import('./admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./admin/AdminDashboard'));
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
                 <Route path="products" element={<AllProducts />} />
+                <Route path="buyproducts" element={<BuyProducts />} />
                 <Route path="cart" element={<Cart />} />
               </Route>
               <Route path="/admin-vpk-secure" element={<AdminLogin />} />
