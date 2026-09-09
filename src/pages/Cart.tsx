@@ -55,7 +55,7 @@ export default function Cart() {
             </div>
             <h2 className="text-2xl font-bold text-white mb-4">Your cart is empty</h2>
             <p className="text-gray-400 mb-8 max-w-md mx-auto">Looks like you haven't added any products to your enquiry list yet. Explore our collection to find what you need.</p>
-            <Link to="/products" className="inline-flex px-8 py-3 rounded-full bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark font-bold hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition-all">
+            <Link to="/buyproducts" className="inline-flex px-8 py-3 rounded-full bg-gradient-to-r from-brand-gold to-brand-orange text-brand-dark font-bold hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transition-all">
               Browse Products
             </Link>
           </motion.div>
@@ -172,8 +172,10 @@ export default function Cart() {
                 </button>
                 
                 <div className="mt-6 pt-6 border-t border-white/10">
-                  <Link to="/products" className="text-brand-orange hover:text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center transition-colors group">
-                    <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <Link 
+                  to="/buyproducts" 
+                  className="w-full py-3 md:py-4 mt-2 md:mt-4 text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-widest hover:text-white transition-colors flex items-center justify-center gap-2"
+                >    <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     Continue Browsing
